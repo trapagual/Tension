@@ -12,6 +12,8 @@ import java.util.Locale;
 public class RegTension {
     int id;
     String fechahora;
+    String fecha;
+    String hora;
     long sist;
     long diast;
     int pulso;
@@ -26,6 +28,7 @@ public class RegTension {
         this.sist = 0L;
         this.diast = 0L;
         this.pulso = 0;
+        setFechayHora(this.fechahora);
 
     }
 
@@ -34,6 +37,7 @@ public class RegTension {
         this.sist = sist;
         this.diast = diast;
         this.pulso = pulso;
+        setFechayHora(fechahora);
     }
 
     public int getId() {
@@ -50,6 +54,13 @@ public class RegTension {
 
     public void setFechahora(String fechahora) {
         this.fechahora = fechahora;
+        setFechayHora(fechahora);
+    }
+
+    public void setFechahora(String fecha, String hora) {
+        this.fechahora = fecha + " " + hora;
+        this.fecha = fecha;
+        this.hora = hora;
     }
 
     public long getSist() {
@@ -75,4 +86,32 @@ public class RegTension {
     public void setPulso(int pulso) {
         this.pulso = pulso;
     }
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public void setFechayHora(String fechahora) {
+        if (fechahora.length() > 0) {
+            String[] campos = fechahora.split(" ");
+            this.fecha = campos[0];
+            this.hora = campos[1];
+        }
+    }
+
+    public String toString() {
+        return this.id + "; " + this.fechahora + "; " + this.sist + "; " + this.diast + "; " + this.pulso;
+    }
+
 }
